@@ -1,3 +1,23 @@
+# 3.5.0 (2022-9-10)
+
+### 🎫 Feat
+
+- 添加 `cssnano` ，打包时压缩 `css` 体积
+- 添加 `element-plus` 无缝滚动 `Table` 页面 demo
+- 开启 `vscode` 括号对指南
+
+### ✔️ refactor
+
+- 使用 `tailwindcss` 替换 `unocss`，新增 `tailwindcss` [使用文档](http://yiming_chang.gitee.io/pure-admin-doc/pages/39156f/)
+
+### 🐞 Bug fixes
+
+- `token` 过期，刷新死循环
+
+### 🍏 Perf
+
+- 重置路由时，清空缓存页面
+
 # 3.4.6 (2022-8-23)
 
 ### 🐞 Bug fixes
@@ -29,7 +49,7 @@
 - 将平台的大部分工具以及 hooks 都集中到[@pureadmin/utils](https://pure-admin-utils-docs.vercel.app/)，并删除集中到这个库里的代码，减少平台体积
 - 添加[unplugin-vue-define-options](https://www.npmjs.com/package/unplugin-vue-define-options)插件，页面可直接写 `defineOptions({name: 自定义名称})`
 - 添加项目文件、语言分析工具 [cloc](https://www.npmjs.com/package/cloc)
-- 添加登陆页国际化
+- 添加登录页国际化
 - 添加完整路由配置表类型声明
 - 添加虚拟列表页面 demo
 - 添加 `PDF` 预览页面 demo

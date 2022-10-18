@@ -5,9 +5,7 @@ import mixNav from "./sidebar/mixNav.vue";
 import avatars from "/@/assets/avatars.jpg";
 import { useNav } from "/@/layout/hooks/useNav";
 import Breadcrumb from "./sidebar/breadCrumb.vue";
-import { deviceDetection } from "@pureadmin/utils";
 import topCollapse from "./sidebar/topCollapse.vue";
-import screenfull from "../components/screenfull/index.vue";
 import { useTranslationLang } from "../hooks/useTranslationLang";
 import globalization from "/@/assets/svg/globalization.svg?component";
 
@@ -50,18 +48,16 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       <Search />
       <!-- 通知 -->
       <Notice id="header-notice" />
-      <!-- 全屏 -->
-      <screenfull id="header-screenfull" v-show="!deviceDetection()" />
       <!-- 国际化 -->
       <el-dropdown id="header-translation" trigger="click">
         <globalization
-          class="navbar-bg-hover w-40px h-48px p-11px cursor-pointer outline-none"
+          class="navbar-bg-hover w-[40px] h-[48px] p-[11px] cursor-pointer outline-none"
         />
         <template #dropdown>
           <el-dropdown-menu class="translation">
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['!dark:color-white', getDropdownItemClass(locale, 'zh')]"
+              :class="['dark:!text-white', getDropdownItemClass(locale, 'zh')]"
               @click="translationCh"
             >
               <IconifyIconOffline
@@ -73,7 +69,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
             </el-dropdown-item>
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'en')"
-              :class="['!dark:color-white', getDropdownItemClass(locale, 'en')]"
+              :class="['dark:!text-white', getDropdownItemClass(locale, 'en')]"
               @click="translationEn"
             >
               <span class="check-en" v-show="locale === 'en'">
@@ -88,7 +84,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover">
           <img v-if="avatars" :src="avatars" :style="avatarsStyle" />
-          <p v-if="username" class="dark:color-white">{{ username }}</p>
+          <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">
@@ -103,7 +99,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
         </template>
       </el-dropdown>
       <span
-        class="el-icon-setting navbar-bg-hover"
+        class="set-icon navbar-bg-hover"
         :title="t('buttons.hssystemSet')"
         @click="onPanel"
       >
@@ -152,15 +148,6 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
         height: 22px;
         border-radius: 50%;
       }
-    }
-
-    .el-icon-setting {
-      height: 48px;
-      width: 38px;
-      padding: 12px;
-      display: flex;
-      cursor: pointer;
-      align-items: center;
     }
   }
 

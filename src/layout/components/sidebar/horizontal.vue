@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
 import Search from "../search/index.vue";
 import Notice from "../notice/index.vue";
+import { ref, watch, nextTick } from "vue";
 import SidebarItem from "./sidebarItem.vue";
 import avatars from "/@/assets/avatars.jpg";
 import { useNav } from "/@/layout/hooks/useNav";
-import screenfull from "../screenfull/index.vue";
-import { deviceDetection } from "@pureadmin/utils";
 import { useTranslationLang } from "../../hooks/useTranslationLang";
 import { usePermissionStoreHook } from "/@/store/modules/permission";
 import globalization from "/@/assets/svg/globalization.svg?component";
@@ -27,6 +25,10 @@ const {
   getDropdownItemStyle,
   getDropdownItemClass
 } = useNav();
+
+nextTick(() => {
+  menuRef.value?.handleResize();
+});
 
 watch(
   () => route.path,
@@ -62,18 +64,16 @@ watch(
       <Search />
       <!-- 通知 -->
       <Notice id="header-notice" />
-      <!-- 全屏 -->
-      <screenfull id="header-screenfull" v-show="!deviceDetection()" />
       <!-- 国际化 -->
       <el-dropdown id="header-translation" trigger="click">
         <globalization
-          class="navbar-bg-hover w-40px h-48px p-11px cursor-pointer outline-none"
+          class="navbar-bg-hover w-[40px] h-[48px] p-[11px] cursor-pointer outline-none"
         />
         <template #dropdown>
           <el-dropdown-menu class="translation">
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['!dark:color-white', getDropdownItemClass(locale, 'zh')]"
+              :class="['dark:!text-white', getDropdownItemClass(locale, 'zh')]"
               @click="translationCh"
             >
               <span class="check-zh" v-show="locale === 'zh'">
@@ -83,7 +83,7 @@ watch(
             </el-dropdown-item>
             <el-dropdown-item
               :style="getDropdownItemStyle(locale, 'en')"
-              :class="['!dark:color-white', getDropdownItemClass(locale, 'en')]"
+              :class="['dark:!text-white', getDropdownItemClass(locale, 'en')]"
               @click="translationEn"
             >
               <span class="check-en" v-show="locale === 'en'">
@@ -98,7 +98,7 @@ watch(
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover">
           <img v-if="avatars" :src="avatars" :style="avatarsStyle" />
-          <p v-if="username" class="dark:color-white">{{ username }}</p>
+          <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">
@@ -113,7 +113,7 @@ watch(
         </template>
       </el-dropdown>
       <span
-        class="el-icon-setting navbar-bg-hover"
+        class="set-icon navbar-bg-hover"
         :title="t('buttons.hssystemSet')"
         @click="onPanel"
       >
