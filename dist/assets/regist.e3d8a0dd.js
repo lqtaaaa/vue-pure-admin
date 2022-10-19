@@ -1,1 +1,0 @@
-import"./regist.vue_vue_type_script_setup_true_lang.512a5737.js";import{_ as s}from"./regist.vue_vue_type_script_setup_true_lang.512a5737.js";import"./index.37bc411f.js";import"./motion.dc9f3f51.js";import"./verifyCode.9a2559eb.js";import"./index.d1021af1.js";import"./hooks.52e7d2c6.js";export{s as default};
